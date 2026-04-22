@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name] - Résumé</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+
+        .resume-header {
+            background: linear-gradient(135deg, #1e3a5f, #0d2137);
+            color: white; padding: 50px 0 40px;
+        }
+        .resume-header h1 { font-size: 2.8rem; font-weight: 800; }
+        .resume-header .subtitle { color: #aed0ee; font-size: 1.1rem; }
+        .contact-item { color: #c0d8ef; font-size: 0.9rem; margin: 4px 10px; }
+        .contact-item i { margin-right: 6px; }
+
+        .resume-body { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
+
+        .resume-section-title {
+            font-size: 1rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 3px; color: #1e3a5f;
+            border-bottom: 2px solid #4ea8de; padding-bottom: 8px;
+            margin-bottom: 24px; margin-top: 40px;
+        }
+
+        .entry { margin-bottom: 26px; }
+        .entry-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px; }
+        .entry-title { font-weight: 700; color: #1a1a2e; font-size: 1rem; }
+        .entry-subtitle { color: #4ea8de; font-weight: 600; font-size: 0.95rem; }
+        .entry-date { color: #888; font-size: 0.85rem; white-space: nowrap; }
+        .entry-location { color: #888; font-size: 0.85rem; }
+        .entry-body { color: #444; font-size: 0.92rem; margin-top: 8px; line-height: 1.6; }
+        .entry-body ul { padding-left: 20px; margin: 6px 0 0; }
+        .entry-body li { margin-bottom: 4px; }
+
+        .skill-row { margin-bottom: 16px; }
+        .skill-category { font-weight: 600; color: #1e3a5f; font-size: 0.9rem; min-width: 140px; }
+        .skill-list { color: #444; font-size: 0.9rem; }
+
+        .award-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+        .award-icon { color: #f0a800; font-size: 1.2rem; margin-top: 2px; }
+        .award-text { font-size: 0.92rem; color: #444; }
+        .award-text strong { color: #1a1a2e; }
+
+        .btn-print {
+            background-color: #4ea8de; border: none; color: white;
+            padding: 10px 22px; border-radius: 6px; font-size: 0.9rem;
+            font-weight: 600; cursor: pointer; transition: background-color 0.2s;
+        }
+        .btn-print:hover { background-color: #2e88be; }
+
+        @media print {
+            .navbar, .no-print { display: none !important; }
+            body { background: white; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top no-print">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">[Your Name]</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="resume.html">Résumé</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gaming.html">Gaming Page</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- RESUME HEADER -->
+    <div class="resume-header text-center">
+        <div class="container">
+            <h1>[Your Full Name]</h1>
+            <p class="subtitle">[Your Major] | [Your University]</p>
+            <div class="d-flex justify-content-center flex-wrap mt-3">
+                <!-- UPDATE: Add/remove contact info as desired -->
+                <span class="contact-item"><i class="bi bi-geo-alt-fill"></i>[City, State]</span>
+                <span class="contact-item"><i class="bi bi-envelope-fill"></i>your.email@example.com</span>
+                <span class="contact-item"><i class="bi bi-linkedin"></i>linkedin.com/in/yourprofile</span>
+                <span class="contact-item"><i class="bi bi-github"></i>github.com/yourusername</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESUME BODY -->
+    <div class="resume-body">
+
+        <div class="text-end mb-4 no-print">
+            <button class="btn-print" onclick="window.print()">
+                <i class="bi bi-printer-fill me-2"></i>Print / Save as PDF
+            </button>
+        </div>
+
+        <!-- EDUCATION -->
+        <h2 class="resume-section-title"><i class="bi bi-mortarboard-fill me-2"></i>Education</h2>
+        <div class="entry">
+            <div class="entry-header">
+                <div>
+                    <div class="entry-title">[Your University Name]</div>
+                    <div class="entry-subtitle">Bachelor of [Science/Arts] in [Your Major]</div>
+                    <div class="entry-location">[City, State]</div>
+                </div>
+                <div class="entry-date">[Month Year] – [Expected Month Year]</div>
+            </div>
+            <div class="entry-body">
+                <ul>
+                    <li>Relevant coursework: IS 201, [Course Name], [Course Name], [Course Name]</li>
+                    <li>GPA: [X.XX] / 4.00 <em>(optional — include if strong)</em></li>
+                    <li>Member of [Any Campus Organizations]</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- WORK EXPERIENCE -->
+        <h2 class="resume-section-title"><i class="bi bi-briefcase-fill me-2"></i>Work Experience</h2>
+
+        <div class="entry">
+            <div class="entry-header">
+                <div>
+                    <div class="entry-title">[Job Title]</div>
+                    <div class="entry-subtitle">[Company Name]</div>
+                    <div class="entry-location">[City, State] &bull; [Full-time / Part-time / Internship]</div>
+                </div>
+                <div class="entry-date">[Month Year] – [Month Year or Present]</div>
+            </div>
+            <div class="entry-body">
+                <ul>
+                    <li>[Key responsibility or accomplishment. Use action verbs: "Managed," "Developed," "Improved…"]</li>
+                    <li>[Another responsibility or result, e.g., "Increased customer satisfaction by 15%"]</li>
+                    <li>[Third bullet if applicable]</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <div>
+                    <div class="entry-title">[Job Title]</div>
+                    <div class="entry-subtitle">[Company Name]</div>
+                    <div class="entry-location">[City, State]</div>
+                </div>
+                <div class="entry-date">[Month Year] – [Month Year]</div>
+            </div>
+            <div class="entry-body">
+                <ul>
+                    <li>[Key responsibility or accomplishment]</li>
+                    <li>[Another result or contribution]</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SKILLS -->
+        <h2 class="resume-section-title"><i class="bi bi-tools me-2"></i>Skills</h2>
+        <div class="entry">
+            <!-- UPDATE: Swap these out with your real skills -->
+            <div class="d-flex skill-row flex-wrap">
+                <span class="skill-category">Technical:</span>
+                <span class="skill-list">HTML, CSS, Python, SQL, Tableau, Microsoft Excel, Google Sheets</span>
+            </div>
+            <div class="d-flex skill-row flex-wrap">
+                <span class="skill-category">Software:</span>
+                <span class="skill-list">Microsoft Office Suite, Google Workspace, GitHub, VS Code</span>
+            </div>
+            <div class="d-flex skill-row flex-wrap">
+                <span class="skill-category">Languages:</span>
+                <span class="skill-list">English (Native), [Other language if applicable]</span>
+            </div>
+            <div class="d-flex skill-row flex-wrap">
+                <span class="skill-category">Soft Skills:</span>
+                <span class="skill-list">Communication, Teamwork, Critical Thinking, Time Management, Leadership</span>
+            </div>
+        </div>
+
+        <!-- AWARDS & HONORS -->
+        <h2 class="resume-section-title"><i class="bi bi-trophy-fill me-2"></i>Awards &amp; Honors</h2>
+        <div class="entry">
+            <!-- UPDATE: Replace with your own awards/honors, or remove this section -->
+            <div class="award-item">
+                <i class="bi bi-star-fill award-icon"></i>
+                <div class="award-text">
+                    <strong>[Award Name]</strong> — [Issuing Organization], [Year]<br>
+                    [Brief description of what this award recognizes]
+                </div>
+            </div>
+            <div class="award-item">
+                <i class="bi bi-star-fill award-icon"></i>
+                <div class="award-text">
+                    <strong>[Dean's List / Scholarship Name]</strong> — [University], [Year(s)]<br>
+                    Awarded to students maintaining a GPA of [X.X] or above.
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVITIES & LEADERSHIP -->
+        <h2 class="resume-section-title"><i class="bi bi-people-fill me-2"></i>Activities &amp; Leadership</h2>
+        <div class="entry">
+            <!-- UPDATE: Add your clubs, organizations, volunteer work, etc. -->
+            <div class="entry-header">
+                <div>
+                    <div class="entry-title">[Club / Organization Name]</div>
+                    <div class="entry-subtitle">[Your Role, e.g., Member / Vice President]</div>
+                </div>
+                <div class="entry-date">[Year] – Present</div>
+            </div>
+            <div class="entry-body">
+                <ul>
+                    <li>[What you contributed or accomplished in this role]</li>
+                </ul>
+            </div>
+        </div>
+
+    </div><!-- end .resume-body -->
+
+    <!-- FOOTER -->
+    <footer class="py-4 text-center no-print" style="background-color: #1e3a5f;">
+        <div class="container">
+            <p class="text-white-50 small mb-0">
+                &copy; 2025 [Your Name] &bull; IS 201 Final Project &bull;
+                <a href="index.html" style="color: #aed0ee;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

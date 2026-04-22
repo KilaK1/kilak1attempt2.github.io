@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Trivia Quiz</title>
+    <style>
+        /* === RESET & BASE === */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: #0d0d1a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 30px 20px 60px;
+        }
+
+        /* === HEADER === */
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h1 {
+            font-family: 'Courier New', Courier, monospace;
+            color: #00ff88;
+            font-size: 2.4em;
+            text-shadow: 0 0 20px #00ff8880;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .quiz-header p {
+            color: #707090;
+            font-size: 1em;
+        }
+
+        .back-link {
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        /* === QUIZ CARD === */
+        #quiz-container {
+            background-color: #1a1a2e;
+            border: 1px solid #2a2a4e;
+            border-radius: 14px;
+            padding: 36px 40px;
+            max-width: 680px;
+            width: 100%;
+            box-shadow: 0 4px 40px #00000060;
+        }
+
+        /* === PROGRESS BAR === */
+        .progress-bar-bg {
+            background-color: #2a2a4e;
+            border-radius: 99px;
+            height: 8px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #00ff88, #00d4ff);
+            height: 8px;
+            border-radius: 99px;
+            transition: width 0.4s ease;
+        }
+
+        /* === QUESTION === */
+        .question-counter {
+            font-family: 'Courier New', Courier, monospace;
+            color: #505070;
+            font-size: 0.85em;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            color: #e0e0ff;
+            margin-bottom: 26px;
+            line-height: 1.5;
+        }
+
+        /* === ANSWER BUTTONS === */
+        .answers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .answer-btn {
+            background-color: #16213e;
+            border: 2px solid #2a2a4e;
+            border-radius: 8px;
+            color: #c0c0e0;
+            cursor: pointer;
+            font-size: 0.95em;
+            padding: 14px 16px;
+            text-align: left;
+            transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+            line-height: 1.4;
+        }
+
+        .answer-btn:hover:not(:disabled) {
+            border-color: #00d4ff;
+            background-color: #1e2a4e;
+            color: #ffffff;
+        }
+
+        .answer-btn.correct {
+            border-color: #00ff88;
+            background-color: #003320;
+            color: #00ff88;
+        }
+
+        .answer-btn.wrong {
+            border-color: #ff4455;
+            background-color: #330010;
+            color: #ff4455;
+        }
+
+        .answer-btn:disabled { cursor: default; }
+
+        /* === FEEDBACK === */
+        .feedback {
+            min-height: 28px;
+            font-size: 0.95em;
+            text-align: center;
+            margin-bottom: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .feedback.correct { color: #00ff88; }
+        .feedback.wrong { color: #ff4455; }
+
+        /* === NEXT BUTTON === */
+        #next-btn {
+            display: none;
+            width: 100%;
+            background-color: #00ff88;
+            border: none;
+            border-radius: 8px;
+            color: #0d0d1a;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 14px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        #next-btn:hover {
+            background-color: #00cc6a;
+            box-shadow: 0 0 14px #00ff8860;
+        }
+
+        /* === SCORE SCREEN === */
+        #score-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .score-emoji { font-size: 3em; margin-bottom: 12px; }
+
+        .score-number {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 3.5em;
+            color: #00ff88;
+            text-shadow: 0 0 20px #00ff8880;
+            margin-bottom: 6px;
+        }
+
+        .score-label {
+            color: #707090;
+            font-size: 1em;
+            margin-bottom: 18px;
+        }
+
+        .score-message {
+            font-size: 1.15em;
+            color: #c0c0e0;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .restart-btn {
+            background-color: #00ff88;
+            border: none;
+            border-radius: 8px;
+            color: #0d0d1a;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 14px 32px;
+            margin-right: 12px;
+            transition: background-color 0.2s;
+        }
+
+        .restart-btn:hover { background-color: #00cc6a; }
+
+        .home-btn {
+            background-color: transparent;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            color: #00d4ff;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 12px 28px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .home-btn:hover {
+            background-color: #00d4ff20;
+            color: #ffffff;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 480px) {
+            .answers-grid { grid-template-columns: 1fr; }
+            #quiz-container { padding: 24px 20px; }
+            .quiz-header h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz-header">
+        <h1>🎮 GAMING TRIVIA</h1>
+        <p>10 questions to test your gaming knowledge</p>
+    </div>
+
+    <a href="gaming.html" class="back-link">← Back to Gaming Page</a>
+
+    <div id="quiz-container">
+
+        <!-- QUIZ GAME VIEW -->
+        <div id="quiz-screen">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar" style="width: 0%"></div>
+            </div>
+
+            <div class="question-counter" id="question-counter">Question 1 of 10</div>
+            <div class="question-text" id="question-text">Loading...</div>
+
+            <div class="answers-grid" id="answers-grid">
+                <button class="answer-btn" onclick="selectAnswer(0)"></button>
+                <button class="answer-btn" onclick="selectAnswer(1)"></button>
+                <button class="answer-btn" onclick="selectAnswer(2)"></button>
+                <button class="answer-btn" onclick="selectAnswer(3)"></button>
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+            <button id="next-btn" onclick="nextQuestion()">NEXT QUESTION →</button>
+        </div>
+
+        <!-- SCORE SCREEN (hidden until end) -->
+        <div id="score-screen">
+            <div class="score-emoji" id="score-emoji">🏆</div>
+            <div class="score-number" id="score-number">0/10</div>
+            <div class="score-label">Final Score</div>
+            <div class="score-message" id="score-message"></div>
+            <button class="restart-btn" onclick="restartQuiz()">↺ PLAY AGAIN</button>
+            <a href="gaming.html" class="home-btn">← BACK</a>
+        </div>
+
+    </div>
+
+    <script>
+        // =============================================
+        //   QUIZ DATA — 10 Gaming Trivia Questions
+        // =============================================
+        const questions = [
+            {
+                question: "Which game studio developed 'The Legend of Zelda: Breath of the Wild'?",
+                answers: ["Ubisoft", "Nintendo", "Square Enix", "Capcom"],
+                correct: 1
+            },
+            {
+                question: "What year was the original PlayStation released in North America?",
+                answers: ["1993", "1996", "1995", "1997"],
+                correct: 2
+            },
+            {
+                question: "In Minecraft, what material is needed to craft a diamond pickaxe?",
+                answers: ["3 Diamonds + 2 Sticks", "2 Diamonds + 1 Stick", "4 Diamonds + 2 Sticks", "3 Diamonds + 3 Sticks"],
+                correct: 0
+            },
+            {
+                question: "Which battle royale game uses the tagline 'Winner Winner Chicken Dinner'?",
+                answers: ["Fortnite", "Apex Legends", "PUBG", "Warzone"],
+                correct: 2
+            },
+            {
+                question: "What is the best-selling video game of all time?",
+                answers: ["Grand Theft Auto V", "Minecraft", "Tetris", "Wii Sports"],
+                correct: 1
+            },
+            {
+                question: "Which company makes the Xbox gaming console?",
+                answers: ["Sony", "Microsoft", "Nintendo", "Sega"],
+                correct: 1
+            },
+            {
+                question: "In Fortnite, how many players start a standard solo match?",
+                answers: ["50", "75", "100", "150"],
+                correct: 2
+            },
+            {
+                question: "What is the name of the main protagonist in the 'God of War' series?",
+                answers: ["Kratos", "Zeus", "Ares", "Hades"],
+                correct: 0
+            },
+            {
+                question: "Which game features a character named 'Master Chief'?",
+                answers: ["Call of Duty", "Halo", "Destiny", "Titanfall"],
+                correct: 1
+            },
+            {
+                question: "What genre best describes 'Stardew Valley'?",
+                answers: ["First-Person Shooter", "Battle Royale", "Farming / Life Simulation", "Racing"],
+                correct: 2
+            }
+        ];
+
+        // =============================================
+        //   GAME STATE
+        // =============================================
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        // =============================================
+        //   INITIALIZE / LOAD QUESTION
+        // =============================================
+        function loadQuestion() {
+            answered = false;
+            const q = questions[currentQuestion];
+            const total = questions.length;
+
+            // Update progress bar
+            document.getElementById('progress-bar').style.width = ((currentQuestion / total) * 100) + '%';
+            document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1} of ${total}`;
+            document.getElementById('question-text').textContent = q.question;
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('next-btn').style.display = 'none';
+
+            // Update answer buttons
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach((btn, i) => {
+                btn.textContent = q.answers[i];
+                btn.className = 'answer-btn';
+                btn.disabled = false;
+            });
+        }
+
+        // =============================================
+        //   HANDLE ANSWER SELECTION
+        // =============================================
+        function selectAnswer(index) {
+            if (answered) return;
+            answered = true;
+
+            const q = questions[currentQuestion];
+            const buttons = document.querySelectorAll('.answer-btn');
+            const feedback = document.getElementById('feedback');
+
+            // Disable all buttons
+            buttons.forEach(btn => btn.disabled = true);
+
+            // Mark correct / wrong
+            buttons[q.correct].classList.add('correct');
+
+            if (index === q.correct) {
+                score++;
+                feedback.textContent = '✓ Correct!';
+                feedback.className = 'feedback correct';
+            } else {
+                buttons[index].classList.add('wrong');
+                feedback.textContent = '✗ Wrong — the correct answer is highlighted.';
+                feedback.className = 'feedback wrong';
+            }
+
+            // Show next button
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.style.display = 'block';
+
+            const isLast = currentQuestion === questions.length - 1;
+            nextBtn.textContent = isLast ? 'SEE MY SCORE →' : 'NEXT QUESTION →';
+        }
+
+        // =============================================
+        //   ADVANCE TO NEXT QUESTION OR SHOW SCORE
+        // =============================================
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showScore();
+            }
+        }
+
+        // =============================================
+        //   SHOW FINAL SCORE
+        // =============================================
+        function showScore() {
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('score-screen').style.display = 'block';
+
+            const total = questions.length;
+            document.getElementById('score-number').textContent = `${score}/${total}`;
+
+            let emoji, message;
+            if (score === total) {
+                emoji = '🏆';
+                message = "PERFECT SCORE! You're a true gaming legend. There's nothing you don't know!";
+            } else if (score >= 8) {
+                emoji = '🎮';
+                message = `Amazing job! ${score} out of ${total} — you clearly spend a lot of time gaming. Almost perfect!`;
+            } else if (score >= 6) {
+                emoji = '⭐';
+                message = `Solid performance! ${score} out of ${total} — you know your stuff but there's always more to learn.`;
+            } else if (score >= 4) {
+                emoji = '🕹️';
+                message = `Not bad! ${score} out of ${total} — keep playing and you'll be a trivia master in no time.`;
+            } else {
+                emoji = '💀';
+                message = `${score} out of ${total}... time to put down the phone and pick up a controller!`;
+            }
+
+            document.getElementById('score-emoji').textContent = emoji;
+            document.getElementById('score-message').textContent = message;
+        }
+
+        // =============================================
+        //   RESTART QUIZ
+        // =============================================
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+            document.getElementById('quiz-screen').style.display = 'block';
+            document.getElementById('score-screen').style.display = 'none';
+            loadQuestion();
+        }
+
+        // =============================================
+        //   START THE QUIZ
+        // =============================================
+        loadQuestion();
+    </script>
+
+</body>
+</html>

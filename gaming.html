@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Gaming World</title>
+    <!-- Custom stylesheet (required: linked stylesheet created from scratch) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TOP ANCHOR (for on-page navigation) -->
+    <div id="top"></div>
+
+    <!-- ===================== HEADER DIV ===================== -->
+    <div id="header">
+        <h1>⚡ MY GAMING WORLD ⚡</h1>
+        <p class="tagline">A deep dive into the games that shaped me</p>
+    </div>
+
+    <!-- ===================== NAVIGATION DIV ===================== -->
+    <div id="nav">
+        <!-- Links back to professional pages -->
+        <a href="index.html">🏠 Home</a>
+        <a href="resume.html">📄 Résumé</a>
+        <!-- Anchor links within this page -->
+        <a href="#about">About</a>
+        <a href="#top-games">Top Games</a>
+        <a href="#video">Video</a>
+        <a href="#stats">Stats</a>
+        <a href="#quiz-app">Quiz App</a>
+    </div>
+
+    <!-- ===================== MAIN CONTENT DIV ===================== -->
+    <div id="content">
+
+        <!-- SECTION: About Gaming (with on-page anchor) -->
+        <div id="about" class="section">
+            <h2>// ABOUT MY PASSION</h2>
+
+            <div class="anchor-links">
+                <a href="#top">↑ Back to Top</a>
+                <a href="#top-games">Jump to Top Games →</a>
+            </div>
+
+            <p>
+                Gaming has been a huge part of my life for as long as I can remember. From the moment
+                I picked up my first controller, I was hooked on the storytelling, the strategy, and
+                the community that video games create. Games aren't just entertainment — they build
+                problem-solving skills, creativity, and bring people together across the world.
+            </p>
+
+            <!-- Required: At least one image NOT from the Bootstrap theme -->
+            <img
+                class="gaming-img"
+                src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&q=80"
+                alt="Gaming setup with glowing keyboard and monitor"
+            >
+            <p class="img-caption">The ultimate gaming setup — where it all happens.</p>
+
+            <p>
+                Whether it's an open-world RPG, a tense battle royale, or a classic puzzle game,
+                every genre has something unique to offer. My gaming journey has taken me through
+                hundreds of titles, each leaving its own mark on how I think and create.
+            </p>
+        </div>
+
+        <!-- SECTION: Top Games (with NESTED LISTS) -->
+        <div id="top-games" class="section">
+            <h2>// MY TOP GAMES</h2>
+            <p>Here are my all-time favorites, ranked by genre:</p>
+
+            <!--
+                REQUIRED: An unordered list embedded inside an ordered list.
+                The ordered list ranks genres; the unordered lists show games per genre.
+            -->
+            <ol>
+                <li>
+                    <strong>RPG / Open World</strong>
+                    <ul>
+                        <li>The Legend of Zelda: Breath of the Wild</li>
+                        <li>Elden Ring</li>
+                        <li>The Witcher 3: Wild Hunt</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Battle Royale / Shooter</strong>
+                    <ul>
+                        <li>Fortnite</li>
+                        <li>Apex Legends</li>
+                        <li>Valorant</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Strategy / Simulation</strong>
+                    <ul>
+                        <li>Civilization VI</li>
+                        <li>Stardew Valley</li>
+                        <li>Cities: Skylines</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Platformer / Classic</strong>
+                    <ul>
+                        <li>Super Mario Odyssey</li>
+                        <li>Hollow Knight</li>
+                        <li>Celeste</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <a href="#top" class="back-top">↑ Back to top</a>
+        </div>
+
+        <!-- SECTION: Must-Watch Video -->
+        <div id="video" class="section">
+            <h2>// MUST-WATCH VIDEO</h2>
+            <p>
+                This is one of my all-time favorite gaming moments captured on film.
+                The creativity and skill in the gaming world never ceases to amaze me:
+            </p>
+
+            <!--
+                REQUIRED: Embedded YouTube video.
+                Note: This won't work when opening the file locally — it WILL work
+                once the site is hosted online (e.g., GitHub Pages).
+                To change the video, replace the VIDEO_ID in the src URL below.
+                Example: src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE"
+            -->
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/QdBZExpgErs"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <a href="#top" class="back-top">↑ Back to top</a>
+        </div>
+
+        <!-- SECTION: Gaming Stats — Tableau -->
+        <div id="stats" class="section">
+            <h2>// GAMING BY THE NUMBERS</h2>
+            <p>
+                The video game industry is massive. Here's a live interactive visualization
+                showing global video game sales data across platforms and genres:
+            </p>
+
+            <!--
+                REQUIRED: Live and interactive embedded Tableau graph.
+
+                HOW TO SWAP IN YOUR OWN TABLEAU VIZ:
+                1. Go to https://public.tableau.com/gallery
+                2. Find a visualization you like (try searching "video game sales")
+                3. Click the share icon → "Embed Code"
+                4. Paste that code here, replacing everything in this comment block.
+
+                The embed below uses a public Video Game Sales dashboard.
+                If it doesn't load, follow the steps above to find a working one.
+            -->
+            <div class="tableau-container">
+                <div class='tableauPlaceholder' id='viz1690000000000' style='position: relative'>
+                    <noscript>
+                        <a href='https://public.tableau.com/'>
+                            <img alt='Video Game Sales' src='https://public.tableau.com/static/images/Vi/VideoGameSales_16435397118280/VideoGameSales/1_rss.png' style='border: none' />
+                        </a>
+                    </noscript>
+                    <object class='tableauViz' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                        <param name='embed_code_version' value='3' />
+                        <param name='site_root' value='' />
+                        <param name='name' value='VideoGameSales_16435397118280/VideoGameSales' />
+                        <param name='tabs' value='no' />
+                        <param name='toolbar' value='yes' />
+                        <param name='animate_transition' value='yes' />
+                        <param name='display_static_image' value='yes' />
+                        <param name='display_spinner' value='yes' />
+                        <param name='display_overlay' value='yes' />
+                        <param name='display_count' value='yes' />
+                        <param name='language' value='en-US' />
+                    </object>
+                </div>
+                <script type='text/javascript'>
+                    var divElement = document.getElementById('viz1690000000000');
+                    var vizElement = divElement.getElementsByTagName('object')[0];
+                    vizElement.style.width = '100%';
+                    vizElement.style.height = '650px';
+                    var scriptElement = document.createElement('script');
+                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                </script>
+            </div>
+
+            <a href="#top" class="back-top">↑ Back to top</a>
+        </div>
+
+        <!-- SECTION: Link to Web App -->
+        <div id="quiz-app" class="section" style="text-align: center;">
+            <h2>// THINK YOU KNOW GAMING?</h2>
+            <p>
+                Test your video game knowledge with my custom trivia quiz!
+                Can you ace all 10 questions?
+            </p>
+            <!-- Link to the web app page -->
+            <a href="quiz.html" class="app-link">🎮 PLAY THE QUIZ →</a>
+            <a href="#top" class="back-top">↑ Back to top</a>
+        </div>
+
+    </div><!-- end #content -->
+
+    <!-- ===================== FOOTER DIV ===================== -->
+    <div id="footer">
+        <p>
+            Built by <strong>[YOUR NAME]</strong> &bull; IS 201 Final Project &bull;
+            <a href="index.html">Back to Portfolio</a>
+        </p>
+    </div>
+
+</body>
+</html>
